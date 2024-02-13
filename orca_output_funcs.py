@@ -47,20 +47,20 @@ def extract_data_from_orca_output(directory = '/home/biswajit/Documents/Naman/an
                     freq_line_ndx.append(line_number)
                     
         
-        infile.seek(0)
-        lines = infile.readlines()
-        freq_lines = lines[freq_line_ndx[0]+4:freq_line_ndx[1]-4]
-        fl = []
-        for v in freq_lines:
-            v = [float(word) for word in v.split() if is_float(word)]
+            infile.seek(0)
+            lines = infile.readlines()
+            freq_lines = lines[freq_line_ndx[0]+4:freq_line_ndx[1]-4]
+            fl = []
+            for v in freq_lines:
+                v = [float(word) for word in v.split() if is_float(word)]
 
-            fl.append(v[0])
-        negative_frequencies = [v for v in fl if v < 0]
-        if len(negative_frequencies) > 1:
-            print("WARNING: imaginary frequencies ({}) detected in geometry optimization file of {}".format(negative_frequencies, f_name))
-            
-        else:
-            pass
+                fl.append(v[0])
+            negative_frequencies = [v for v in fl if v < 0]
+            if len(negative_frequencies) > 1:
+                print("WARNING: imaginary frequencies ({}) detected in geometry optimization file of {}".format(negative_frequencies, f_name))
+
+            else:
+                pass
         
         # get energy
         infile.seek(0)
